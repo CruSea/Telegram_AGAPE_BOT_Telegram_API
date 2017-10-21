@@ -6,12 +6,14 @@ class Agape_BOT_Object:
         pass
 
     def generate_keyboard_markup(self, json_array_object, row_width):
-        menus = json.loads(json_array_object)
-        keyboard_markup = types.ReplyKeyboardMarkup(row_width=row_width)
-        for menu in menus:
-            keyboard_markup.add(self._get_single_menu(menu))
-        return keyboard_markup
+        menus = json_array_object
+        if(menus['Sub_Menus']):
+            keyboard_markup = types.ReplyKeyboardMarkup(row_width=row_width)
+            for menu in menus['Sub_Menus']:
+                keyboard_markup.add(self._get_single_menu(menu))
+            print keyboard_markup
+            return keyboard_markup
 
     def _get_single_menu(self, json_object):
-        menu_item = types.KeyboardButton(json_object['name'])
+        menu_item = types.KeyboardButton(json_object['Replay']['Name'])
         return menu_item
