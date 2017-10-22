@@ -7,7 +7,7 @@ class Agape_BOT_Object:
 
     def generate_keyboard_markup(self, json_array_object, row_width):
         menus = json_array_object
-        if(menus['Sub_Menus']):
+        if menus and menus['Sub_Menus']:
             keyboard_markup = types.ReplyKeyboardMarkup(row_width=row_width)
             for menu in menus['Sub_Menus']:
                 keyboard_markup.add(self._get_single_menu(menu))
